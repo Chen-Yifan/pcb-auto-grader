@@ -72,8 +72,19 @@ def combine(gtl_file, gts_file, gto_file, txt_file, gtp_file, gbl_file, gbs_file
     ctx.dump(os.path.join(os.path.dirname(__file__), out_bottom))
 
 
-def combine_folder(root_in, out_top, out_bottom):
-    print('combining', root_in, out_top, out_bottom)
+
+def combine_copper_only(gtl_file, out_copper_only_top, out_copper_only_bottom):
+    copper = load_layer(gtl_file)
+    ctx = GerberCairoContext()
+    ctx.render_layer(copper)
+    ctx.dump(os.path.join(os.path.dirname(__file__), out_copper_only_top))
+    ctx.clear()
+    copper_top = load_layer(gtl_file)
+    ctx.render_layer(copper, bounds = copper_top.bounds)
+    ctx.dump(os.path.join(os.path.dirname(__file__), out_copper_only_bottom))
+
+
+def combine_folder(root_in, out_top, out_bottom, out_copper_only_top, out_copper_only_bottom):
     files = os.listdir(root_in)
     for fname in files:
         full_name = os.path.join(root_in, fname)
@@ -92,7 +103,11 @@ def combine_folder(root_in, out_top, out_bottom):
             gbl_file = full_name
         elif suffix == 'GBS':
             gbs_file = full_name
+    print('combining', root_in, out_top, out_bottom)
     combine(gtl_file, gts_file, gto_file, txt_file, gtp_file, gbl_file, gbs_file, out_top, out_bottom)
+    print('combining', root_in, out_copper_only_top, out_copper_only_bottom)
+    combine_copper_only(gtl_file, out_copper_only_top, out_copper_only_bottom)
+
 
 
 if __name__ == '__main__':
@@ -102,4 +117,5 @@ if __name__ == '__main__':
             if f[0] == '.':
                 continue
             root_in = os.path.join(prefix, f)
-            combine_folder(root_in, os.path.join('processed', f+'-top.png'), os.path.join('processed', f+'-bottom.png'))
+            combine_folder(root_in, os.path.join('processed', f+'-top.png'), os.path.join('processed', f+'-bottom.png')
+                , os.path.join('processed', f+'-top-copper.png'), os.path.join('processed', f+'-bottom-copper.png'))
