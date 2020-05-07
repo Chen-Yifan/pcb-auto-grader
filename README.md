@@ -23,6 +23,11 @@ preprocess_image(folder_name) # convert image return None # raise exception if m
 
 common utility functions: # used to read image from path, do numpy array, tensor, PIL image format conversions
 
-## function list for grading tasks
-### Detect ground plane(folder_name) # output 0 or 1 for the score, will be accumulated in total score of student
-### Detect component(folder_name)
+## function list for grading tasks, will be called in sequence
+Detect_ground_plane(folder_name) # output 0 or 1 for the score, will be accumulated in total score of student
+ensure_bothside_have traces(folder_name)
+Detect_components(folder_name) # return bounding box for components
+detect_graph()
+detect_traces()
+test_connectivity()
+
