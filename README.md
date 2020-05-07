@@ -2,10 +2,11 @@
 cs543 group project
 
 ## [Data Folder](https://github.com/NeoWu1216/pcb-auto-grader/tree/master/data)
-Contains raw and processed data for training, data will be converted to png based file
+Contains raw and processed data for training.  
+Data will be converted to png based file.
 
 ## [Experiment Folder](https://github.com/NeoWu1216/pcb-auto-grader/tree/master/experiment)
-Contains jupyter notebooks that are used to evaluate different detecting method
+Contains jupyter notebooks that are used to evaluate different detecting method.  
 Here is a list of methods we tried:
 * Blob feature detector
 * Slicing window based detector
