@@ -89,7 +89,7 @@ def crop(img):
     img: the image represented in numpy format
     return: (the cropped image, left upper corner position)
     """
-    start_row, end_row, start_col, end_col = 0, len(img)-1, 0, len(img[0])-1
+    start_row, start_col, end_row, end_col = 0, 0, len(img)-1, len(img[0])-1
     while np.sum(img[start_row]) == 0:
         start_row += 1
         if start_row == len(img):
@@ -162,7 +162,7 @@ def get_next_boundary_component(img, debug=False, tol=6):
         
     res = np.array(img[start_row:end_row+1, start_col:end_col+1])
     img[start_row:end_row+1, start_col:end_col+1] = 0
-    return start_row, end_row, start_col, end_col 
+    return start_row, start_col, end_row, end_col 
 
 
 def get_similarity(comp, mask):
@@ -193,7 +193,7 @@ def detect_component_thresh(img, component, similarity_tol = 0.9):
     cum_offsets[0] += offsets[0]
     cum_offsets[1] += offsets[1]
     while cropped_img is not None:
-        start_row, end_row, start_col, end_col  = get_next_boundary_component(cropped_img)
+        start_row, start_col, end_row, end_col  = get_next_boundary_component(cropped_img)
         start_row += cum_offsets[0]
         end_row += cum_offsets[0]
         start_col += cum_offsets[1]
@@ -201,7 +201,7 @@ def detect_component_thresh(img, component, similarity_tol = 0.9):
 
         for rot_comp in get_all_rotated_components(component):
             if get_similarity(thresh[start_row:end_row+1, start_col:end_col+1], rot_comp) >= similarity_tol:
-                return start_row, end_row, start_col, end_col
+                return start_row, start_col, end_row,  end_col
 
         cropped_img, offsets = crop(cropped_img)
         cum_offsets[0] += offsets[0]
@@ -235,7 +235,7 @@ def detect_component_sliding_window(img, component):
         matched[i:i+m2, j:j+n2] = img[i:i+m2, j:j+n2]
         if (convolved.ravel()[loc] > best_score):
             best_score = convolved.ravel()[loc]
-            best_res =  i, i+m2, j, j+n2 
+            best_res =  i, j, i+m2, j+n2 
             
     print('detection (sliding window): {} seconds elapsed'.format(time()-start_time))
     return best_res 
@@ -249,7 +249,7 @@ def get_bounding_box_from_img(img, bounding_box):
     bounding_box: tuple representing bounding box
     return: subarray of the represented bounding box
     """
-    start_row, end_row, start_col, end_col = bounding_box
+    start_row, start_col, end_row, end_col = bounding_box
     return img[start_row:end_row+1, start_col:end_col+1]
 
 def compare_img(original, predicted, orig_title='original', pred_title='predicted'):
