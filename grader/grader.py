@@ -3,6 +3,7 @@ from zip_handling import *
 from render_gerber import *
 from grade_ground_plane import *
 from grade_components import *
+from grade_trace import *
 
 def grade_main(zip_file):
     score = 0
@@ -29,6 +30,11 @@ def grade_main(zip_file):
 
     score += score_cp
     explanation += explanation_cp
+
+    score_tr, explanation_tr = grade_trace(basedir, labels, boxes)
+
+    score += score_tr
+    explanation = "".join([explanation, "\n", explanation_tr, "\n"])
 
     return score, explanation
 

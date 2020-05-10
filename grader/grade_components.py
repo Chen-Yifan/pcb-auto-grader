@@ -47,6 +47,7 @@ def grade_components(basedir):
   image = utils.read_image(filename)
   labels, boxes, scores = model.predict(image)
   labels, boxes, scores = get_best_bounding_boxes(labels, boxes, scores)
+  boxes = boxes.data.detach().numpy()
 
   explanation = ""
 
@@ -62,4 +63,4 @@ def grade_components(basedir):
     if score_dict[label] == 0:
       explanation += "{} not detected\n".format(label)
 
-  return score, explanation, label, boxes, scores
+  return score, explanation, labels, boxes, scores
