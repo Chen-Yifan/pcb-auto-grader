@@ -13,7 +13,7 @@ Here is a list of methods we tried:
 * Ground Plane CNN based detector
 * Network detector
 
-## Grader Folder
+## [Grader Folder](https://github.com/NeoWu1216/pcb-auto-grader/tree/master/grader)
 Contains code used to calculate grade for a student homework.  
 Here is a list of function signatures:
 ```
