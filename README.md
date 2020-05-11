@@ -54,7 +54,7 @@ grade_trace
 """
 Generate topology and grade wheter the components are connected correctly
 """
-
+```
 
 ## Video presentation
 Click [here](https://www.youtube.com/watch?v=evb0vagDYxQ) to see our final presentation.
