@@ -11,49 +11,50 @@ Here is a list of methods we tried:
 * Blob feature detector
 * Slicing window based detector
 * Ground Plane CNN based detector
-* Network detector
+* Object detector for components detector
+* Line detector
+* Morphology segmentation
+* Morphology erosion
+* Tracedetection
 
 ## [Grader Folder](https://github.com/NeoWu1216/pcb-auto-grader/tree/master/grader)
 Contains code used to calculate grade for a student homework.  
-Here is a list of function signatures:
+Here is a list of files and its purpose:
 ```
-grade_main(zip_file_path) 
+grader
 """
 the function called to grade a student's zipped file
 return: a number and a string of grading break down
 """
 
-unzip_to_folder(zip_file_path, folder_name)
+zip_handling
 """
 set up workspace for grading task
+finds the workspace if there is a folder embedded in the zip file
 exception: if file is not zip
 """
 
-preprocess_image(folder_name) 
+render_gerber
 """
-convert image
-exception: if missing files or cannot be rendered
-"""
-
-common utility functions 
-"""
-used to read image from path, do numpy array, tensor, PIL image format conversions
-"""
-```
-## Function list for grading tasks 
-```
-"""
-call in sequence
-return: 0 or 1 for the score, will be accumulated in total score of student
+Render the pcb CAD file to an top vew and bottom view image of PCB with correct palette
 """
 
-detect_ground_plane(folder_name)
-ensure_bothside_have traces(folder_name)
-detect_components_bounding_box(folder_name) 
-detect_graph()
-detect_traces()
-test_connectivity()
-```
+grade_components
+"""
+find components on the PCB and classify them to see whether each type of component is present
+The info will be used for future grading tasks down the pipeline
+"""
+
+grade_ground_plane
+"""
+detect whether ground plane is present
+"""
+
+grade_trace
+"""
+Generate topology and grade wheter the components are connected correctly
+"""
+
 
 ## Video presentation
 Click [here](https://www.youtube.com/watch?v=evb0vagDYxQ) to see our final presentation.
