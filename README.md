@@ -7,8 +7,8 @@ This readme helps you use this autograder of ECE 445 EAGLE (pcb) assignment.
 - Python3
 
 ## Packages
-* torch == 1.5
-* torchvision == 0.6
+* torch = 1.5
+* torchvision = 0.6
 * pcb-tools
 * detecto
 
