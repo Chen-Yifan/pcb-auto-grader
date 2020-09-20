@@ -1,60 +1,70 @@
-# pcb-auto-grader
-cs543 group project
+# PCB Auto Grader
+This readme helps you use this autograder of ECE 445 EAGLE (pcb) assignment. 
 
-## [Data Folder](https://github.com/NeoWu1216/pcb-auto-grader/tree/master/data)
-Contains raw and processed data for training.  
-Data will be converted to png based file.
+## Prerequisites 
 
-## [Experiment Folder](https://github.com/NeoWu1216/pcb-auto-grader/tree/master/experiment)
-Contains jupyter notebooks that are used to evaluate different detecting method.  
-Here is a list of methods we tried:
-* Blob feature detector
-* Slicing window based detector
-* Ground Plane CNN based detector
-* Object detector for components detector
-* Line detector
-* Morphology segmentation
-* Morphology erosion
-* Tracedetection
+- Conda / pip
+- Python3
 
-## [Grader Folder](https://github.com/NeoWu1216/pcb-auto-grader/tree/master/grader)
-Contains code used to calculate grade for a student homework.  
-Here is a list of files and its purpose:
+## Packages
+* torch == 1.5
+* torchvision == 0.6
+* pcb-tools
+* detecto
+
+**Install pytorch**
+
+- OSX
+```bash
+# conda
+conda install pytorch==1.5.1 torchvision==0.6.1 -c pytorch
+# pip
+pip install torch==1.5.1 torchvision==0.6.1
 ```
-grader
-"""
-the function called to grade a student's zipped file
-return: a number and a string of grading break down
-"""
+- Linux and Windows
 
-zip_handling
-"""
-set up workspace for grading task
-finds the workspace if there is a folder embedded in the zip file
-exception: if file is not zip
-"""
+Commands for CPU only 
 
-render_gerber
-"""
-Render the pcb CAD file to an top vew and bottom view image of PCB with correct palette
-"""
+```bash
+# conda 
+conda install pytorch==1.5.1 torchvision==0.6.1 cpuonly -c pytorch
+# pip
+pip install torch==1.5.1+cpu torchvision==0.6.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
+```
+If you have CUDA, check this out for how to install pytorch on your machine: https://pytorch.org/get-started/previous-versions/
 
-grade_components
-"""
-find components on the PCB and classify them to see whether each type of component is present
-The info will be used for future grading tasks down the pipeline
-"""
-
-grade_ground_plane
-"""
-detect whether ground plane is present
-"""
-
-grade_trace
-"""
-Generate topology and grade wheter the components are connected correctly
-"""
+**Install other packages with pip.**
+```bash
+pip install pcb-tools
+pip install detecto
 ```
 
-## Video presentation
-Click [here](https://www.youtube.com/watch?v=evb0vagDYxQ) to see our final presentation.
+## Download the code
+This repo uses computer vision technique to autonomously grade the pcb assignment.  
+```bash
+git clone https://github.com/Chen-Yifan/pcb-auto-grader
+```
+## How to grade
+1. Put a ZIP file containing the student submissions in `pcb-auto-grader/grader/upload` folder. The zip file should include the following files at least:
+```bash
+ECE445_EagleHW.brd
+ECE445_EagleHW.dri
+ECE445_EagleHW.GBL
+ECE445_EagleHW.GBO
+ECE445_EagleHW.GBS
+ECE445_EagleHW.GML
+ECE445_EagleHW.gpi
+ECE445_EagleHW.GTL
+ECE445_EagleHW.GTO
+ECE445_EagleHW.GTP
+ECE445_EagleHW.GTS
+ECE445_EagleHW.TXT
+```
+
+2. Go to grader folder and run the code grade.py
+```bash
+cd pcb-auto-grader/grader
+python grader.py path/to/zip/file
+```
+
+3. Done! Output is the final grade.
