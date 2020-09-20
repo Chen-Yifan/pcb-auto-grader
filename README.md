@@ -61,7 +61,7 @@ ECE445_EagleHW.GTS
 ECE445_EagleHW.TXT
 ```
 
-2. Go to grader folder and run the code grade.py
+2. Go to grader folder and run the code grade.py. You need to replace `path/to/zip/file` with the actual path to a submission for grading
 ```bash
 cd pcb-auto-grader/grader
 python grader.py path/to/zip/file
