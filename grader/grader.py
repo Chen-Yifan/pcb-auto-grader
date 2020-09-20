@@ -39,5 +39,8 @@ def grade_main(zip_file):
     return score, explanation
 
 if __name__ == "__main__":
-    FILE = "upload/student.zip"
-    print(grade_main(FILE))
+    FILE = sys.argv[1]
+    grade, msg = grade_main(FILE)
+    print('Grading Message \n', msg)
+    print('FINAL Grade for %s:'%FILE, grade)
+
