@@ -68,6 +68,7 @@ ECE445_EagleHW.GTP
 ECE445_EagleHW.GTS
 ECE445_EagleHW.TXT
 ```
+The student may not submit all these, then you'll need to generate these files using EAGLE and zip these together.
 
 2. Go to grader folder and run the code grade.py. You need to replace `path/to/zip/file` with the actual path to a submission for grading
 ```bash
