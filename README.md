@@ -44,6 +44,12 @@ This repo uses computer vision technique to autonomously grade the pcb assignmen
 ```bash
 git clone https://github.com/Chen-Yifan/pcb-auto-grader
 ```
+Download the model from https://drive.google.com/file/d/11-3x2Ob_R04PLv5ZYVx7f6IT7jPnmjz-/view?usp=sharing
+Put ComponentDetectionModel.pth in `pcb-auto-grader/grader/` folder
+```bash
+mv ComponentDetectionModel.pth pcb-auto-grader/grader/
+```
+
 ## How to grade
 1. Put a ZIP file containing the student submissions in `pcb-auto-grader/grader/upload` folder. The zip file should include the following files at least:
 ```bash
@@ -64,7 +70,7 @@ ECE445_EagleHW.TXT
 2. Go to grader folder and run the code grade.py. You need to replace `path/to/zip/file` with the actual path to a submission for grading
 ```bash
 cd pcb-auto-grader/grader
-python grader.py path/to/zip/file
+python3 grader.py path/to/zip/file
 ```
 
 3. Done! Output is the final grade.
