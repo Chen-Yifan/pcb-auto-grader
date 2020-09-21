@@ -1,5 +1,5 @@
 # PCB Auto Grader
-This readme helps you use this autograder of ECE 445 EAGLE (pcb) assignment. 
+The readme helps you get started with this autograder of ECE 445 EAGLE (pcb) assignment. 
 
 ## Prerequisites 
 
