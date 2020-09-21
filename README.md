@@ -40,13 +40,13 @@ pip install detecto
 ```
 
 ## Download the code and model
-This repo uses computer vision technique to autonomously grade the pcb assignment.  
+1. Download the code: this repo uses computer vision technique to autonomously grade the pcb assignment.  
 ```bash
 git clone https://github.com/Chen-Yifan/pcb-auto-grader
 ```
-1. Download the model from https://drive.google.com/file/d/11-3x2Ob_R04PLv5ZYVx7f6IT7jPnmjz-/view?usp=sharing
+2. Download the model from https://drive.google.com/file/d/11-3x2Ob_R04PLv5ZYVx7f6IT7jPnmjz-/view?usp=sharing
 
-2. Put ComponentDetectionModel.pth in `pcb-auto-grader/grader/` folder
+3. Put ComponentDetectionModel.pth in `pcb-auto-grader/grader/` folder
 ```bash
 mv ComponentDetectionModel.pth pcb-auto-grader/grader/
 ```
