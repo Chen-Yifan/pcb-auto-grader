@@ -19,8 +19,9 @@ The readme helps you get started with this autograder of ECE 445 EAGLE (pcb) ass
 # conda
 conda install pytorch==1.5.1 torchvision==0.6.1 -c pytorch
 # pip
-pip install torch==1.5.1 torchvision==0.6.1
+pip install torch==1.5.1 torchvision==0.6.1  # use pip3 if needed
 ```
+
 - Linux and Windows
 
 Commands for CPU only 
