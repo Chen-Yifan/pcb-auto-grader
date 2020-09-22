@@ -34,6 +34,12 @@ pip install torch==1.5.1+cpu torchvision==0.6.1+cpu -f https://download.pytorch.
 ```
 If you have CUDA, check this out for how to install pytorch on your machine: https://pytorch.org/get-started/previous-versions/
 
+**Verify your Pytorch**
+```bash
+python -c "import torch; print(torch.__version__)" # 1.5.1
+python -c "import torchvision; print(torchvision.__version__)" # 0.6.1
+```
+
 **Install other packages with pip.**
 ```bash
 pip install pcb-tools
