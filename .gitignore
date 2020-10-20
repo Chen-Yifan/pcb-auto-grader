@@ -1,1 +1,6 @@
+.DS_Store
+data/.DS_Store
+grader/workdir/
+grader/upload/
+grader/.DS_Store
 .ipynb_checkpoints

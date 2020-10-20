@@ -7,10 +7,13 @@ import torch
 
 
 model_file = 'ComponentDetectionModel.pth'
+# model_file = 'GroundDetectionModel.pth'
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
+# print(device) # cpu
 #Faster R-CNN ResNet-50 FPN
 model = torch.load(model_file, map_location=torch.device(device))
+
 model._model = model._model.to(device)
 model._device = device
 

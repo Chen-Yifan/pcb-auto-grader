@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import os, sys
 from zip_handling import *
 from render_gerber import *
@@ -6,6 +8,7 @@ from grade_components import *
 from grade_trace import *
 
 def grade_main(zip_file):
+    print(zip_file)
     score = 0
     explanation = ""
 
@@ -39,8 +42,22 @@ def grade_main(zip_file):
     return score, explanation
 
 if __name__ == "__main__":
-    FILE = sys.argv[1]
-    grade, msg = grade_main(FILE)
-    print('Grading Message \n', msg)
-    print('FINAL Grade for %s:'%FILE, grade)
+    # single file input
+    # FILE = sys.argv[1]
+    # grade, msg = grade_main(FILE)
+    # print('Grading Message \n', msg)
+    # print('FINAL Grade for %s:' % FILE, grade)
 
+    # batch grading
+    zipfile_list = os.listdir('upload/')
+    print(zipfile_list)
+
+    workfile_list = os.listdir('workdir')
+    for file in zipfile_list:
+        if 'zip' not in file or file[:-4] in workfile_list:
+            continue
+        filepath = 'upload/'+file
+        grade, msg = grade_main(filepath)
+        print('Grading Message \n', msg)
+        print('FINAL Grade for %s:'%file, grade)
+        print('\n----------------------------------------')
